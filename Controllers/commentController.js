@@ -9,10 +9,6 @@ const hasTicketAccess = (user, ticket) => {
     if (user.role === 'USER') return ticket.createdby && ticket.createdby.toString() === user.id.toString();
     return false;
 };
-//POST /api/comments/:id - create comment for a ticket
-//GET /api/comments/:id - get all comments for a ticket
-//PUT /api/comments/:id - update a comment (only by comment owner or manager)
-//DELETE /api/comments/:id - delete a comment (only by comment owner or manager)
 export const createComment = async (req, res) => {
     try {
         const { id: ticketId } = req.params;

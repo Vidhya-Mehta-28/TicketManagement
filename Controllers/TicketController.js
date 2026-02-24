@@ -2,7 +2,6 @@ import Ticket from '../Models/Ticket.js';
 import sendResponse from '../utils/responseHandler.js';
 import User from '../Models/User.js';
 
-//POST /api/tickets - create ticket
 export const createTicket = async (req, res) => {
     try {
         const payload = { ...req.body, createdby: req.user.id };
@@ -12,7 +11,6 @@ export const createTicket = async (req, res) => {
         return sendResponse(res, 500, false, null, err.message);
     }
 };
-//GET /api/tickets - get all tickets (managers see all, support see assigned, users see own)
 export const getTickets = async (req, res) => {
     try {
         let query = {};
@@ -29,7 +27,6 @@ export const getTickets = async (req, res) => {
         return sendResponse(res, 500, false, null, err.message);
     }
 };
-//GET /api/tickets/:id - get ticket by id
 export const getTicketById = async (req, res) => {
     try {
         const ticket = await Ticket.findById(req.params.id).populate('createdby assigned_to', '-password');
